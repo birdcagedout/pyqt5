@@ -3,7 +3,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox
 from PyQt5.QtCore import QCoreApplication
-from pandas import qcut
 
 
 class Test1(QWidget):
@@ -19,14 +18,16 @@ class Test1(QWidget):
 		btn.move(50, 50)
 		btn.clicked.connect(QCoreApplication.instance().quit)		# 이벤트 처리
 
-		#self.setGeometry(1000, 300, 500, 200)
+		
+		# 윈도창 설정
+		#self.setGeometry(1000, 300, 500, 200)						# 위치, 크기
 		self.resize(500, 500)										# 인자는 크기, 자동으로 화면 센터에 뜬다
 		self.setWindowTitle("PyQT5를 이용한 윈도")
 		
 		self.show()
 	
 	def closeEvent(self, QCloseEvent) -> None:
-		response = QMessageBox.question(self, "종료 확인", "종료하시겠습니까?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		response = QMessageBox.question(self, "종료 확인", "종료 하시겠습니까?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		
 		if response == QMessageBox.Yes:
 			QCloseEvent.accept()
