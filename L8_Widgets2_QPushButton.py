@@ -18,14 +18,14 @@ class Test8(QWidget):
 		self.initUI()
 
 		self.resize(350, 180)
-		self.setWindowTitle("Toggle Button")
+		self.setWindowTitle("Checkable Button")
 		self.show()
 
 	def initUI(self):
 		self.color = QColor(0, 0, 0)
 
 		btnRed = QPushButton('Red', self)
-		btnRed.setCheckable(True)
+		btnRed.setCheckable(True)					# 누른상태/뗀상태를 저장할 수 있는 버튼으로 속성변경
 		btnRed.move(10, 10)
 		btnRed.clicked.connect(self.setColor)
 
@@ -35,7 +35,7 @@ class Test8(QWidget):
 		btnGreen.clicked.connect(self.setColor)
 
 		btnBlue = QPushButton('Blue', self)
-		btnBlue.setCheckable(True)
+		btnBlue.setCheckable(False)					# 이 속성을 False로 하면, 이벤트 핸들러 내에서 pressed는 항상 False (클릭할 때 이벤트 발생 안함, 클릭을 뗄 때만 이벤트 발생)
 		btnBlue.move(10, 110)
 		btnBlue.clicked.connect(self.setColor)
 
@@ -47,9 +47,11 @@ class Test8(QWidget):
 	# 마우스 클릭 이벤트 핸들러
 	def setColor(self, pressed):
 		sender = self.sender()
+		print(f"현재 이벤트를 발생시킨 버튼은 {sender.text()}입니다.")
 
 		if pressed:
 			val = 255
+			print(sender.text() + 'was pressed')
 		else:
 			val = 0
 		

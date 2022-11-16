@@ -24,12 +24,12 @@ class Test8(QWidget):
 	def initUI(self):
 		checkbox = QCheckBox('Show Title', self)
 		checkbox.move(20, 20)
-		checkbox.toggle()
-		checkbox.stateChanged.connect(self.changedTitle)
+		checkbox.toggle()		# checked 상태로 변경
+		checkbox.stateChanged.connect(self.changeTitle)
 
 		
 	# 마우스 클릭 이벤트 핸들러
-	def changedTitle(self, state):
+	def changeTitle(self, state):
 		if state == Qt.Checked:
 			self.setWindowTitle('QCheckBox')
 		else:
