@@ -27,6 +27,7 @@ class Test8(QWidget):
 		cal = QCalendarWidget(self)
 		cal.setGridVisible(True)						# 격자선 보이게
 		cal.clicked[QDate].connect(self.showDate)
+		
 
 		date = cal.selectedDate()
 		dateString = f"{date.year()}-{date.month()}-{date.day()} ({date.shortDayName(date.dayOfWeek())})"
