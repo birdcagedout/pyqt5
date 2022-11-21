@@ -1,3 +1,4 @@
 {
-	"python.analysis.typeCheckingMode": "off"
+	"python.analysis.typeCheckingMode": "off",
+	"python.analysis.extraPaths": ["C:\\ProgramData\\Anaconda3\\envs\\py\\Lib\\site-packages\\PyQt5"]
 }
