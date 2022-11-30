@@ -188,7 +188,7 @@ class WidgetGallery(QDialog):
     def advance_progressbar(self):
         cur_val = self._progress_bar.value()
         max_val = self._progress_bar.maximum()
-        self._progress_bar.setValue(cur_val + (max_val - cur_val) / 100)
+        self._progress_bar.setValue(int(cur_val + (max_val - cur_val) / 100))
 
     def create_buttons_groupbox(self):
         result = QGroupBox("Buttons")

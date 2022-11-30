@@ -6,69 +6,84 @@ from PyQt5.QtGui import *
 
 class MyApp(QWidget):
 
-    def __init__(self):
-        super().__init__()
-        self.initUI()
+	def __init__(self):
+		super().__init__()
+		self.initUI()
 
-    def initUI(self):
-        # self.slider = QSlider(Qt.Horizontal, self)
-        # self.slider.move(30, 30)
-        # self.slider.setRange(0, 50)
-        # self.slider.setSingleStep(2)
+	def initUI(self):
+		# self.slider = QSlider(Qt.Horizontal, self)
+		# self.slider.move(30, 30)
+		# self.slider.setRange(0, 50)
+		# self.slider.setSingleStep(2)
 
-        self.dial = QDial(self)
-        self.dial.move(30, 50)
-        self.dial.setRange(0, 9)
-        self.dial.setNotchesVisible(True)
+		self.dial = QDial(self)
+		self.dial.move(30, 50)
+		self.dial.setRange(0, 9)
+		self.dial.setNotchesVisible(True)
 
-        self.lcd = QLCDNumber(self)
-        self.lcd.setSegmentStyle(QLCDNumber.Outline)
-        self.lcd.move(50, 20)
+		self.lcd = QLCDNumber(self)
+		self.lcd.setSegmentStyle(QLCDNumber.Outline)
+		self.lcd.move(50, 20)
 
-        self.btn = QPushButton(self)
-        # btn.setStyleSheet("border-radius : 10; border-style : outset; background-image : url(setting50.png;")
-        self.btn.setStyleSheet("""border-image : url(setting50_original.png);
-            background-color : #ccc; border-radius : 10px;
-        """)
-        # btn.setIcon(btnicon)
-        # btn.setIconSize(QSize(50, 50))
-        self.btn.move(35, 160)
-        self.btn.resize(50+10, 50+10)
-        self.btn.clicked.connect(self.mousePressEvent)
-        self.btn.released.connect(self.mouseReleaseEvent)
-        
+		self.btn = QPushButton(self)
+		# btn.setStyleSheet("border-radius : 10; border-style : outset; background-image : url(setting50.png;")
+		# self.btn.setStyleSheet("""border-image : url(setting50.png); border-radius : 10px;
+		# """)
+		self.btn.setStyleSheet("""
+			QPushButton {
+				background-color: #2B5DD1;
+				color: #FFFFFF;
+				border-style: outset;
+				padding: 0px;
+				font: bold 20px;
+				border-width: 0px;
+				border-radius: 18px;
+				border-color: #2752B8;
+				border-image : url(setting50_original.png);
+			}
+			QPushButton:hover {
+				background-color: lightgreen;
+			}
+		""")
+		# btn.setIcon(btnicon)
+		# btn.setIconSize(QSize(50, 50))
+		self.btn.move(35, 160)
+		self.btn.resize(50, 50)
+		self.btn.pressed.connect(self.mousePressEvent)
+		self.btn.released.connect(self.mouseReleaseEvent)
 
-        # self.slider.valueChanged.connect(self.dial.setValue)
-        self.dial.valueChanged.connect(self.valueChanged)
-        # btn.clicked.connect(self.button_clicked)
+		# self.slider.valueChanged.connect(self.dial.setValue)
+		self.dial.valueChanged.connect(self.valueChanged)
+		# btn.clicked.connect(self.button_clicked)
 
-        self.setWindowTitle('QSlider and QDial')
-        self.setGeometry(300, 300, 400, 300)
-        self.show()
+		self.setWindowTitle('QSlider and QDial')
+		self.setGeometry(300, 300, 400, 300)
+		self.show()
 
-    def mousePressEvent(self):
-        sender = self.sender()
-        if sender == self.btn:
-            self.btn.setStyleSheet("border-image : url(setting50_pressed.png)")
+	def mousePressEvent(self, event: QMouseEvent = None):
+		sender = self.sender()
+		if sender == self.btn:
+			# self.btn.animateClick(100)
+			self.btn.setStyleSheet("border-image : url(setting50_pressed.png)")
 
-    def mouseReleaseEvent(self):
-        sender = self.sender()
-        if sender == self.btn:
-            self.btn.setStyleSheet("border-image : url(setting50_original.png)")
-    
-    def valueChanged(self):
-        sender: QDial = self.sender()
-        val = sender.value()
-        self.lcd.display(val)
-        print(sender.value())
-        self.setWindowOpacity((10 - val)/10)
+	def mouseReleaseEvent(self, event: QMouseEvent = None):
+		sender = self.sender()
+		if sender == self.btn:
+			self.btn.setStyleSheet("border-image : url(setting50_original.png)")
+	
+	def valueChanged(self):
+		sender: QDial = self.sender()
+		val = sender.value()
+		self.lcd.display(val)
+		print(sender.value())
+		self.setWindowOpacity((10 - val)/10)
 
-    def button_clicked(self):
-        self.slider.setValue(0)
-        self.dial.setValue(0)
+	def button_clicked(self):
+		self.slider.setValue(0)
+		self.dial.setValue(0)
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MyApp()
-    sys.exit(app.exec_())
+	app = QApplication(sys.argv)
+	ex = MyApp()
+	sys.exit(app.exec_())

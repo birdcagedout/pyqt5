@@ -4,7 +4,7 @@
 import sys
 
 from PyQt5.QtCore import Qt, QCoreApplication, QObject, pyqtSignal, QBasicTimer, QTimerEvent, QDate
-from PyQt5.QtGui import QPalette, QColor, QContextMenuEvent, QCloseEvent, QKeyEvent, QMouseEvent, QPixmap
+from PyQt5.QtGui import QPalette, QColor, QContextMenuEvent, QCloseEvent, QKeyEvent, QMouseEvent, QPixmap, QFont
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QMenu, QAction, QSizePolicy
 from PyQt5.QtWidgets import	QMessageBox, QLabel, QPushButton, QLineEdit, QTextEdit, QLCDNumber, QSlider, QInputDialog, QColorDialog, QFrame, QFontDialog, QCheckBox, QProgressBar, QCalendarWidget
@@ -24,6 +24,7 @@ class Test9(QWidget):
 	def initUI(self):
 		self.label = QLabel(self)
 		self.edit = QLineEdit(self)
+		self.edit.setFont(QFont('Malgun Gothic', 10))
 
 		self.edit.move(60, 100)
 		self.label.move(60, 40)
